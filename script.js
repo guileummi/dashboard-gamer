@@ -16,6 +16,8 @@ const spanVitorias = document.getElementById('vitorias')
 const spanDerrotas = document.getElementById('derrotas')
 const spanDesempenho = document.getElementById('taxaD')
 
+const ctx = document.getElementById('grafico')
+
 // Evento
 
 botao.addEventListener('click', adicionarPartida)
@@ -74,6 +76,31 @@ function atualizarLista(){
     }
 }
 
+// Atualiazar gráfico
+
+let grafico
+
+function atualizarGrafico(vitorias, derrotas){
+    if(grafico){
+        grafico.destroy()
+    }
+
+    grafico = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['vitorias', 'derrotas'],
+            datasets: [{
+                label: 'Resultados',
+                data: [vitorias, derrotas],
+                backgroundColor: [
+                    'green',
+                    'red'
+                ]
+            }]
+        }
+    })
+}
+
 // Atualizar estatísticas
 
 function atualizarEstatisticas(){
@@ -100,6 +127,8 @@ function atualizarEstatisticas(){
     spanPartidas.textContent = vitorias
     spanDerrotas.textContent = derrotas
     spanDesempenho.textContent = taxaDesempenho.toFixed(1) + '%'
+
+    atualizarGrafico(vitorias, derrotas)
 }
 
 function render(){
