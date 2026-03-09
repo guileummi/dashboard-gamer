@@ -1,0 +1,106 @@
+/* RESET */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor1: #0f172a;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--cor1);
+    color: white;
+    padding: 20px;
+}
+
+/* TITULO */
+
+h1 {
+    text-align: center;
+    background-color: var(--cor1);
+    margin-bottom: 20px;
+}
+
+/* SECTIONS */
+
+section {
+    background-color: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* CARDS */
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    background-color: var(--cor1);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.card span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* FORM */
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, select, button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    background-color: #9333ea;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #7e22ce;
+}
+
+/* LISTA */
+
+ul {
+    list-style: none;
+}
+
+li {
+    background-color: var(--cor1);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 768px){
+    .cards {
+        flex-direction: row;
+    }
+
+    .card {
+        flex: 1; /*é um atalho > flex-grow:1; flex-shrink:1; flex-basis:0;*/
+    }
+
+    .formulario {
+        flex-direction: row;
+    }
+}
