@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Dashboard-Gamer</title>
+</head>
+<body>
+    <h1>Dashboard Gamer 🎮</h1>
+
+    <section>
+        <h2>Perfil</h2>
+        <p>Jogador: Messi</p>
+        <p>Nível: 35</p>
+        <p>Rank: Ouro</p>
+    </section>
+    
+    <section>
+        <h2>Estatísticas</h2>
+
+        <div>
+            <p>Partidas</p>
+            <span id="partidas">0</span>
+        </div>
+
+        <div>
+            <p>Vitórias</p>
+            <span id="vitorias">0</span>
+        </div>
+
+        <div>
+            <p>Derrotas</p>
+            <span id="derrotas">0</span>
+        </div>
+    </section>
+
+    <section>
+        <h2>Adicionar Partida</h2>
+
+        <input id="jogo" placeholder="Nome do jogo">
+
+        <select id="resultado">
+            <option value="vitoria">Vitória</option>
+            <option value="derrota">Derrota</option>
+        </select>
+
+        <button id="btnAdicionar">Adicionar</button>
+    </section>
+
+    <section>
+        <h2>Histórico</h2>
+
+        <ul id="listaPatidas">
+            <!--O JavaScript vai inserir partidas aqui dinamicamente-->
+        </ul>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
