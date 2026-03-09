@@ -14,6 +14,7 @@ const lista = document.getElementById('listaPartidas')
 const spanPartidas = document.getElementById('partidas')
 const spanVitorias = document.getElementById('vitorias')
 const spanDerrotas = document.getElementById('derrotas')
+const spanDesempenho = document.getElementById('taxaD')
 
 // Evento
 
@@ -87,9 +88,18 @@ function atualizarEstatisticas(){
         }
     }
 
+    const total = partidas.length
+
+    let taxaDesempenho = 0
+
+    if(total > 0){
+        taxaDesempenho = (vitorias / total) * 100
+    }
+
     spanPartidas.textContent = partidas.length
     spanPartidas.textContent = vitorias
     spanDerrotas.textContent = derrotas
+    spanDesempenho.textContent = taxaDesempenho.toFixed(1) + '%'
 }
 
 function render(){
