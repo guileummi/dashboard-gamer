@@ -51,9 +51,24 @@ function salvarDados(){
 function atualizarLista(){
     lista.innerHTML = ''
 
-    for(let partida of partidas){
+    for(let i = 0; i < partidas.length; i++){
+        const partida = partidas[i]
+
         const li = document.createElement('li')
-        li.textContent = `🎮 ${partida.jogo} | 🏆 ${partida.resultado} | 📅 ${partida.data}`
+
+        const texto = document.createElement('span')
+        texto.textContent = `🎮 ${partida.jogo} | 🏆 ${partida.resultado} | 📅 ${partida.data}`
+
+        const botaoDelete = document.createElement('buttom')
+        botaoDelete.textContent = "🗑️"
+
+        botaoDelete.onclick = function(){
+            deletarPartida(i)
+        }
+
+        li.appendChild(texto)
+        li.appendChild(botaoDelete)
+
         lista.appendChild(li)
     }
 }
