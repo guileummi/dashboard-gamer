@@ -1,6 +1,7 @@
-// Criar a estrutura de dados
 
-const partidas = []
+// Criar a estrutura de dados / Carregar dados salvos
+
+const partidas = JSON.parse(localStorage.getItem('partidas')) || []
 
 // Pegar os elementos do HTML
 
@@ -14,7 +15,7 @@ const spanPartidas = document.getElementById('partidas')
 const spanVitorias = document.getElementById('vitorias')
 const spanDerrotas = document.getElementById('derrotas')
 
-// clique do botão
+// Evento
 
 botao.addEventListener('click', adicionarPartida)
 
@@ -35,9 +36,14 @@ function adicionarPartida(){
 
     partidas.push(partida)
 
-    atualizarLista()
+    salvarDados()
+    render()    
+}
 
-    atualizarEstatisticas()
+// salvar dados
+
+function salvarDados(){
+    localStorage.setItem('partidas', JSON.stringify(partidas))
 }
 
 // Mostrar as partidas
@@ -51,3 +57,32 @@ function atualizarLista(){
         lista.appendChild(li)
     }
 }
+
+// Atualizar estatísticas
+
+function atualizarEstatisticas(){
+    let vitorias = 0
+    let derrotas = 0
+
+    for(let partida of partidas){
+        if(partida.resultado === 'vitoria'){
+            vitorias++
+        }else {
+            derrotas++
+        }
+    }
+
+    spanPartidas.textContent = partidas.length
+    spanPartidas.textContent = vitorias
+    spanDerrotas.textContent = derrotas
+}
+
+function render(){
+    atualizarLista()
+    atualizarEstatisticas()
+}
+
+// INICIALIZAÇÃO
+
+render()
+
