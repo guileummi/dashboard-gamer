@@ -11,9 +11,8 @@
 
     <section>
         <h2>Perfil</h2>
-        <p>Jogador: Messi</p>
-        <p>Nível: 35</p>
-        <p>Rank: Ouro</p>
+        <p>Jogador: <span id="nomeJogador">Messi</span></p>
+        <button id="btnAlterarNome">✏️ Alterar nome</button>
     </section>
     
     <section>
@@ -41,9 +40,15 @@
     </section>
 
     <section>
-        <h2>Gráfico de Desempenho</h2>
+        <h2>Gráfico de Resultado</h2>
 
-        <canvas id="grafico"></canvas>
+        <canvas id="graficoResultados"></canvas>
+    </section>
+
+    <section>
+        <h2>Gráfico de Tempo</h2>
+
+        <canvas id="graficoTempo"></canvas>
     </section>
 
     <section>
@@ -58,6 +63,10 @@
 
         <button id="btnAdicionar">Adicionar</button>
     </section>
+
+    <select id="filtroJogo">
+        <option value="todos">Todos os jogos</option>
+    </select>
 
     <section>
         <h2>Histórico</h2>
