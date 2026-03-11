@@ -1,18 +1,15 @@
 
-// Criar a estrutura de dados / Carregar dados salvos
-const nomeSalvo = localStorage.getItem('nomeJogador')
+// Carregar dados salvos
+const partidas = JSON.parse(localStorage.getItem('partidas')) || []
 
+const nomeJogador = document.getElementById('nomeJogador')
+const btnAlterarNome = document.getElementById('btnAlterarNome')
+const nomeSalvo = localStorage.getItem('nomeJogador')
 if(nomeSalvo){
     nomeJogador.textContent = nomeSalvo
 }
 
-const partidas = JSON.parse(localStorage.getItem('partidas')) || []
-
 // Pegar os elementos do HTML
-
-const nomeJogador = document.getElementById('nomeJogador')
-const btnAlterarNome = document.getElementById('btnAlterarNome')
-
 const inputJogo = document.getElementById('jogo')
 const selectResultado = document.getElementById('resultado')
 const botao = document.getElementById('btnAdicionar')
@@ -29,13 +26,11 @@ const ctxTempo = document.getElementById('graficoTempo')
 const filtroJogo = document.getElementById("filtroJogo")
 
 // Evento
-
 botao.addEventListener('click', adicionarPartida)
 filtroJogo.addEventListener("change", render)
 btnAlterarNome.addEventListener('click', alterarNome)
 
 // adicionar Partida
-
 function adicionarPartida(){
     const jogo = inputJogo.value
     const resultado = selectResultado.value
@@ -51,19 +46,20 @@ function adicionarPartida(){
 
     partidas.push(partida)
 
+    
     salvarDados()
+    atualizarFiltro()
     render()    
 }
 
 // salvar partidas
-
 function salvarDados(){
     localStorage.setItem('partidas', JSON.stringify(partidas))
 }
 
 // alterar nome
-
 function alterarNome(){
+
     const novoNome = prompt("Digite seu nome")
 
     if(novoNome){
@@ -74,15 +70,15 @@ function alterarNome(){
 }
 
 // Mostrar as partidas
-
 function atualizarLista(){
     lista.innerHTML = ''
+
     const jogoSelecionado = filtroJogo.value
 
     for(let i = 0; i < partidas.length; i++){
         const partida = partidas[i]
 
-        if(jogoSelecionado !== 'todos' && partida.jogo !== jogoSelecionado){
+        if(jogoSelecionado !== "todos" && partida.jogo !== jogoSelecionado){
             continue
         }
 
@@ -115,7 +111,6 @@ function deletarPartida(index){
 }
 
 // Atualiazar gráfico resultado
-
 let graficoResultados
 
 function atualizarGrafico(vitorias, derrotas){
@@ -140,7 +135,6 @@ function atualizarGrafico(vitorias, derrotas){
 }
 
 // atualizar gráfico tempo
-
 let graficoDesempenho
 
 function atualizarGraficoTempo(){
@@ -203,7 +197,6 @@ function atualizarFiltro(){
 }
 
 // Atualizar estatísticas
-
 function atualizarEstatisticas(){
     let vitorias = 0
     let derrotas = 0
@@ -218,28 +211,25 @@ function atualizarEstatisticas(){
 
     const total = partidas.length
 
-    let taxaDesempenho = 0
+    let taxaDeVitoria = 0
 
     if(total > 0){
-        taxaDesempenho = (vitorias / total) * 100
+        taxaDeVitoria = (vitorias / total) * 100
     }
 
     spanPartidas.textContent = partidas.length
     spanVitorias.textContent = vitorias
     spanDerrotas.textContent = derrotas
-    spanDesempenho.textContent = taxaDesempenho.toFixed(1) + '%'
+    spanDesempenho.textContent = taxaDeVitoria.toFixed(1) + '%'
 
     atualizarGrafico(vitorias, derrotas)
 }
 
 function render(){
-    atualizarFiltro()
     atualizarLista()
     atualizarEstatisticas()
     atualizarGraficoTempo()
 }
 
-// INICIALIZAÇÃO
-
-render()
+render() // INICIALIZAÇÃO
 
